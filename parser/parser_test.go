@@ -235,6 +235,8 @@ func TestOperatorPrecedenceParsing(t *testing.T) {
 		input    string
 		expected string
 	}{
+		{"1 + (2 + 3) + 4", "((1 + (2 + 3)) + 4)"},
+		{"(1 + 2) * (3 + 4)", "((1 + 2) * (3 + 4))"},
 		{"true", "true"},
 		{"false", "false"},
 		{"3 > 5 == false", "((3 > 5) == false)"},
