@@ -57,14 +57,19 @@ func Eval(node ast.Node, env *object.Environment) object.Object {
 		if isError(val) {
 			return val
 		}
+		// let v = ...
+		// 保存用户定义的各种类型的变量值(包含 int, string, function)
 		env.Set(node.Name.Value, val)
 	case *ast.Identifier:
 		return evalIdentifier(node, env)
 	case *ast.FunctionLiteral:
+		// 语法分析中 FunctionLiteral 为函数定义
 		params := node.Parameters
 		body := node.Body
 		return &object.Function{Parameters: params, Body: body, Env: env}
 	case *ast.CallExpression:
+		// node.Function 为 Identifier 或者 FunctionLiteral
+		// Eval(node.Function, env): 可以获取 object.Function 或者 object.Builtin 对象
 		function := Eval(node.Function, env)
 		if isError(function) {
 			return function
@@ -81,15 +86,17 @@ func Eval(node ast.Node, env *object.Environment) object.Object {
 }
 
 func applyFunction(fn object.Object, args []object.Object) object.Object {
-	function, ok := fn.(*object.Function)
-	if !ok {
+	switch fn := fn.(type) {
+	case *object.Function:
+		extendedEnv := extendFunctionEnv(fn, args)
+		evaluated := Eval(fn.Body, extendedEnv)
+
+		return unwrapReturnValue(evaluated)
+	case *object.Builtin:
+		return fn.Fn(args...)
+	default:
 		return newError("not a function: %s", fn.Type())
 	}
-
-	extendedEnv := extendFunctionEnv(function, args)
-	evaluated := Eval(function.Body, extendedEnv)
-
-	return unwrapReturnValue(evaluated)
 }
 
 func unwrapReturnValue(obj object.Object) object.Object {
@@ -122,12 +129,18 @@ func evalExpressions(exps []ast.Expression, env *object.Environment) []object.Ob
 }
 
 func evalIdentifier(node *ast.Identifier, env *object.Environment) object.Object {
-	val, ok := env.Get(node.Value)
-	if !ok {
-		return newError("identifier not found: " + node.Value)
+	// 获取 identifier 的值
+	// 用户定义的各种类型变量(包括 int, string, function)
+	if val, ok := env.Get(node.Value); ok {
+		return val
 	}
 
-	return val
+	// builtin
+	if builtin, ok := builtins[node.Value]; ok {
+		return builtin
+	}
+
+	return newError("identifier not found: " + node.Value)
 }
 
 func evalBlockStatement(node *ast.BlockStatement, env *object.Environment) object.Object {
