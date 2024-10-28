@@ -88,6 +88,9 @@ func Eval(node ast.Node, env *object.Environment) object.Object {
 	case *ast.CallExpression:
 		// node.Function 为 Identifier 或者 FunctionLiteral
 		// Eval(node.Function, env): 可以获取 object.Function 或者 object.Builtin 对象
+		if node.Function.TokenLiteral() == "quote" {
+			return quote(node.Arguments[0], env)
+		}
 		function := Eval(node.Function, env)
 		if isError(function) {
 			return function
