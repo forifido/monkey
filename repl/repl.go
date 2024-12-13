@@ -3,10 +3,10 @@ package repl
 import (
 	"bufio"
 	"fmt"
-	"github.com/forifido/monkey/evaluator"
-	"github.com/forifido/monkey/lexer"
-	"github.com/forifido/monkey/object"
-	"github.com/forifido/monkey/parser"
+	"github.com/vvinnpy/monkey/evaluator"
+	"github.com/vvinnpy/monkey/lexer"
+	"github.com/vvinnpy/monkey/object"
+	"github.com/vvinnpy/monkey/parser"
 	"io"
 )
 

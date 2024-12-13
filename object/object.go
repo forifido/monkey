@@ -3,7 +3,7 @@ package object
 import (
 	"bytes"
 	"fmt"
-	"github.com/forifido/monkey/ast"
+	"github.com/vvinnpy/monkey/ast"
 	"hash/fnv"
 	"strings"
 )

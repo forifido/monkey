@@ -2,7 +2,7 @@ package ast
 
 import (
 	"bytes"
-	"github.com/forifido/monkey/token"
+	"github.com/vvinnpy/monkey/token"
 	"strings"
 )
 

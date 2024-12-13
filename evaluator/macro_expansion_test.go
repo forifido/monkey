@@ -1,10 +1,10 @@
 package evaluator
 
 import (
-	"github.com/forifido/monkey/ast"
-	"github.com/forifido/monkey/lexer"
-	"github.com/forifido/monkey/object"
-	"github.com/forifido/monkey/parser"
+	"github.com/vvinnpy/monkey/ast"
+	"github.com/vvinnpy/monkey/lexer"
+	"github.com/vvinnpy/monkey/object"
+	"github.com/vvinnpy/monkey/parser"
 	"testing"
 )
 

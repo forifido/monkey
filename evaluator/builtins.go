@@ -2,7 +2,7 @@ package evaluator
 
 import (
 	"fmt"
-	"github.com/forifido/monkey/object"
+	"github.com/vvinnpy/monkey/object"
 )
 
 var builtins = map[string]*object.Builtin{

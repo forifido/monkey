@@ -2,8 +2,8 @@ package evaluator
 
 import (
 	"fmt"
-	"github.com/forifido/monkey/ast"
-	"github.com/forifido/monkey/object"
+	"github.com/vvinnpy/monkey/ast"
+	"github.com/vvinnpy/monkey/object"
 )
 
 var (

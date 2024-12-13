@@ -1,7 +1,7 @@
 package ast
 
 import (
-	"github.com/forifido/monkey/token"
+	"github.com/vvinnpy/monkey/token"
 	"testing"
 )
 

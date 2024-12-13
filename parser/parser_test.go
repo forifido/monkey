@@ -2,8 +2,8 @@ package parser
 
 import (
 	"fmt"
-	"github.com/forifido/monkey/ast"
-	"github.com/forifido/monkey/lexer"
+	"github.com/vvinnpy/monkey/ast"
+	"github.com/vvinnpy/monkey/lexer"
 	"testing"
 )
 

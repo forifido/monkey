@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/forifido/monkey/repl"
+	"github.com/vvinnpy/monkey/repl"
 	"os"
 	"os/user"
 )

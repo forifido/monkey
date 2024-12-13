@@ -1,7 +1,7 @@
 package evaluator
 
 import (
-	"github.com/forifido/monkey/object"
+	"github.com/vvinnpy/monkey/object"
 	"testing"
 )
 

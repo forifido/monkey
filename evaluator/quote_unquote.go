@@ -2,9 +2,9 @@ package evaluator
 
 import (
 	"fmt"
-	"github.com/forifido/monkey/ast"
-	"github.com/forifido/monkey/object"
-	"github.com/forifido/monkey/token"
+	"github.com/vvinnpy/monkey/ast"
+	"github.com/vvinnpy/monkey/object"
+	"github.com/vvinnpy/monkey/token"
 )
 
 func quote(node ast.Node, env *object.Environment) object.Object {
